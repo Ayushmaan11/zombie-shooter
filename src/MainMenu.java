@@ -19,7 +19,22 @@ public class MainMenu {
         options[0] = "New Game";
         options[1] = "Options";
         options[2] = "Exit";
+    }
 
+
+    public void moveSelectionUp(){
+        if(selectedOption == 0){
+            selectedOption = 2;
+        }else{
+            selectedOption--;
+        }
+    }
+    public void moveSelectionDown(){
+        if(selectedOption == 2) {
+            selectedOption = 0;
+        }else{
+            selectedOption++;
+        }
     }
 
     public void draw(Graphics g, int width, int height){
@@ -41,10 +56,18 @@ public class MainMenu {
         }
     }
 
+    public int getSelectedOption() {
+        return selectedOption;
+    }
+    public void setSelectedOption(int selectedOption) {
+        this.selectedOption = selectedOption;
+    }
+
     public void update(){
 
     }
     public void mouseClicked(){
         
     }
+
 }
