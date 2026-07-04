@@ -30,12 +30,15 @@ public class MainMenu {
         g.setFont(titleFont);
         g.setColor(titleColor);
         g.drawString(title,(width-textWidth)/2,200);
-        g.setColor(textColor);
         g.setFont(menuFont);
-        g.drawString(options[0],100,320);
-        g.drawString(options[1],100,420);
-        g.drawString(options[2],100,520);
-
+        for(int i =0; i<options.length; i++){
+            if(i == selectedOption){
+                g.setColor(selectedColor);
+            }else{
+                g.setColor(textColor);
+            }
+            g.drawString(options[i],100,320+(100)*i);
+        }
     }
 
     public void update(){
