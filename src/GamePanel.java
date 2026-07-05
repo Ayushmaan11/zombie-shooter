@@ -5,10 +5,18 @@ import java.util.*;
 
 public class GamePanel extends JPanel {
     private MainMenu mainMenu;
+    private World world;
+    private enum GameState {
+        MENU,
+        PLAYING,
+        OPTIONS
+    }
+    GameState gameState = GameState.MENU;
 
 
     public GamePanel() {
         mainMenu = new MainMenu();
+        world = new World();
         setFocusable(true);
 
         addKeyListener(new KeyAdapter(){
@@ -22,12 +30,13 @@ public class GamePanel extends JPanel {
                     mainMenu.moveSelectionDown();
                     repaint();
                 }else if(e.getKeyText(e.getKeyCode()).equals("Enter")){
-                    mainMenu.getSelectedOption();
-                    if(mainMenu.getSelectedOption() == 0){
-                        System.out.println("Starting Game");
-                    }else if(mainMenu.getSelectedOption() == 1){
-                        System.out.println("Options");
-                    } else if (mainMenu.getSelectedOption() == 2) {
+                    int option = mainMenu.getSelectedOption();
+                    if(option == 0){
+                        gameState = GameState.PLAYING;
+                        repaint();
+                    }else if(option == 1){
+                        gameState = GameState.OPTIONS;
+                    } else if (option == 2) {
                         System.exit(0);
                     }
                 }
@@ -40,7 +49,11 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
         g.setColor(Color.GREEN);
         g.fillRect(0,0,getWidth(),getHeight());
-        mainMenu.draw(g, getWidth(), getHeight());
+        if(gameState == GameState.MENU){
+            mainMenu.draw(g, getWidth(), getHeight());
+        }else if(gameState == GameState.PLAYING){
+            world.drawWorld(g);
+        }
     }
 
 }
