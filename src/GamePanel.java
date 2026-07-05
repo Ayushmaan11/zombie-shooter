@@ -21,6 +21,15 @@ public class GamePanel extends JPanel {
                 else if(e.getKeyText(e.getKeyCode()).equals("Down")){
                     mainMenu.moveSelectionDown();
                     repaint();
+                }else if(e.getKeyText(e.getKeyCode()).equals("Enter")){
+                    mainMenu.getSelectedOption();
+                    if(mainMenu.getSelectedOption() == 0){
+                        System.out.println("Starting Game");
+                    }else if(mainMenu.getSelectedOption() == 1){
+                        System.out.println("Options");
+                    } else if (mainMenu.getSelectedOption() == 2) {
+                        System.exit(0);
+                    }
                 }
             }
         });
