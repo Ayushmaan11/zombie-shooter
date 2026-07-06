@@ -6,6 +6,7 @@ import java.util.*;
 public class GamePanel extends JPanel {
     private MainMenu mainMenu;
     private World world;
+    private Player player;
     private enum GameState {
         MENU,
         PLAYING,
@@ -17,6 +18,7 @@ public class GamePanel extends JPanel {
     public GamePanel() {
         mainMenu = new MainMenu();
         world = new World();
+        player = new Player(world.getWorldWidth()/2, world.getWorldHeight()/2);
         setFocusable(true);
 
         addKeyListener(new KeyAdapter(){
@@ -53,6 +55,8 @@ public class GamePanel extends JPanel {
             mainMenu.draw(g, getWidth(), getHeight());
         }else if(gameState == GameState.PLAYING){
             world.drawWorld(g);
+
+            player.drawPlayer(g);
         }
     }
 

@@ -10,6 +10,14 @@ public class World {
         g.setColor(grassColor);
         g.fillRect(0, 0, worldWidth, worldHeight);
     }
+
+    public int getWorldWidth() {
+        return worldWidth;
+    }
+
+    public int getWorldHeight() {
+        return worldHeight;
+    }
 }
 
 
