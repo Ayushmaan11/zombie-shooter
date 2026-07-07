@@ -15,11 +15,11 @@ public class GamePanel extends JPanel {
     }
     GameState gameState = GameState.MENU;
 
-
     public GamePanel() {
         mainMenu = new MainMenu();
         world = new World();
         player = new Player(500, 300);
+        camera = new Camera(world.getWorldWidth(),  world.getWorldHeight());
         setFocusable(true);
 
         addKeyListener(new KeyAdapter(){
@@ -46,16 +46,16 @@ public class GamePanel extends JPanel {
                     }
                 }
                 else if(gameState == GameState.PLAYING){
-                    if(e.getKeyCode() == KeyEvent.VK_W){
+                    if(e.getKeyCode() == KeyEvent.VK_W && player.getYPos()-player.getSpeed() >= 0){
                         player.moveUp();
                         repaint();
-                    }else if(e.getKeyCode() == KeyEvent.VK_S){
+                    }else if(e.getKeyCode() == KeyEvent.VK_S && player.getYPos()+player.getHeight()+player.getSpeed() <= world.getWorldHeight()){
                         player.moveDown();
                         repaint();
-                    }else if(e.getKeyCode() == KeyEvent.VK_A){
+                    }else if(e.getKeyCode() == KeyEvent.VK_A && player.getXPos()-player.getSpeed()>= 0){
                         player.moveLeft();
                         repaint();
-                    }else if(e.getKeyCode() == KeyEvent.VK_D){
+                    }else if(e.getKeyCode() == KeyEvent.VK_D && player.getXPos()+player.getWidth()+player.getSpeed() <= world.getWorldWidth()){
                         player.moveRight();
                         repaint();
                     }
@@ -77,8 +77,5 @@ public class GamePanel extends JPanel {
             world.drawWorld(g);
             player.drawPlayer(g);
         }
-
-
     }
-
 }

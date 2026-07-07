@@ -26,9 +26,24 @@ public class Player {
         return yPos;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
     public void moveUp() {
         yPos -= speed;
     }
+
+    
+
 
     public void moveDown() {
         yPos += speed;

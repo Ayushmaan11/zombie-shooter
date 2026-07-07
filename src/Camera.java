@@ -10,7 +10,7 @@ public class Camera {
         this.viewportHeight = viewHeight;
     }
 
-    public void follow(){
+    public void follow(int playerX, int playerY){
 
     }
 }
