@@ -13,9 +13,9 @@ public class Player {
         this.xPos = x;
         this.yPos = y;
     }
-    public void drawPlayer(Graphics g){
+    public void drawPlayer(Graphics g,  Camera camera) {
         g.setColor(color);
-        g.fillRect( xPos,yPos,width, height);
+        g.fillRect( xPos - camera.getXPos(),yPos - camera.getYPos(),width, height);
     }
 
     public int getXPos() {

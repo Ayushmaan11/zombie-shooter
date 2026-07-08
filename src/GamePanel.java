@@ -18,8 +18,8 @@ public class GamePanel extends JPanel {
     public GamePanel() {
         mainMenu = new MainMenu();
         world = new World();
-        player = new Player(500, 300);
-        camera = new Camera(world.getWorldWidth(),  world.getWorldHeight());
+        player = new Player(world.getWorldWidth()/2, world.getWorldHeight()/2);
+        camera = new Camera(1920,  1080);
         setFocusable(true);
 
         addKeyListener(new KeyAdapter(){
@@ -68,14 +68,19 @@ public class GamePanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g){
+
         super.paintComponent(g);
-        g.setColor(Color.GREEN);
-        g.fillRect(0,0,getWidth(),getHeight());
         if(gameState == GameState.MENU){
             mainMenu.draw(g, getWidth(), getHeight());
         }else if(gameState == GameState.PLAYING){
-            world.drawWorld(g);
-            player.drawPlayer(g);
+            camera.setViewportSize(getWidth(), getHeight());
+            camera.follow(player.getXPos(),player.getYPos());
+            System.out.println("Player X:" +  player.getXPos());
+            System.out.println("Player Y:" +  player.getYPos());
+            System.out.println("Camera X:" +  camera.getXPos());
+            System.out.println("Camera Y:" +  camera.getYPos());
+            world.drawWorld(g,camera);
+            player.drawPlayer(g, camera);
         }
     }
 }

@@ -6,9 +6,9 @@ public class World {
     private Color grassColor =  new Color(51, 102, 0);
     private Color waterColor;
 
-    public void drawWorld(Graphics g){
+    public void drawWorld(Graphics g, Camera camera){
         g.setColor(grassColor);
-        g.fillRect(0, 0, worldWidth, worldHeight);
+        g.fillRect(-camera.getXPos(), -camera.getYPos(), worldWidth, worldHeight);
     }
 
     public int getWorldWidth() {

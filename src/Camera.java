@@ -1,6 +1,6 @@
 public class Camera {
-    private int xPos = 1540;
-    private int yPos = 1960;
+    private int xPos ;
+    private int yPos ;
     private int viewportWidth;
     private int viewportHeight;
 
@@ -11,6 +11,21 @@ public class Camera {
     }
 
     public void follow(int playerX, int playerY){
+        xPos = playerX-viewportWidth/2;
+        yPos = playerY-viewportHeight/2;
+    }
 
+    public void setViewportSize(int width, int height){
+        this.viewportWidth = width;
+        this.viewportHeight = height;
+    }
+
+
+    public int getXPos(){
+        return xPos;
+    }
+
+    public int getYPos(){
+        return yPos;
     }
 }
