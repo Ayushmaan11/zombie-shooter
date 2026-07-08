@@ -12,7 +12,13 @@ public class Camera {
 
     public void follow(int playerX, int playerY){
         xPos = playerX-viewportWidth/2;
+        if(xPos < 0){
+            xPos = 0;
+        }
         yPos = playerY-viewportHeight/2;
+        if(yPos < 0){
+            yPos = 0;
+        }
     }
 
     public void setViewportSize(int width, int height){

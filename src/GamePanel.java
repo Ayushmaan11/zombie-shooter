@@ -46,16 +46,16 @@ public class GamePanel extends JPanel {
                     }
                 }
                 else if(gameState == GameState.PLAYING){
-                    if(e.getKeyCode() == KeyEvent.VK_W && player.getYPos()-player.getSpeed() >= 0){
+                    if(e.getKeyCode() == KeyEvent.VK_W && player.getYPos()-player.getSpeed() >= world.getWaterBorder()){
                         player.moveUp();
                         repaint();
-                    }else if(e.getKeyCode() == KeyEvent.VK_S && player.getYPos()+player.getHeight()+player.getSpeed() <= world.getWorldHeight()){
+                    }else if(e.getKeyCode() == KeyEvent.VK_S && player.getYPos()+player.getHeight()+player.getSpeed() <= world.getWorldHeight() - world.getWaterBorder()){
                         player.moveDown();
                         repaint();
-                    }else if(e.getKeyCode() == KeyEvent.VK_A && player.getXPos()-player.getSpeed()>= 0){
+                    }else if(e.getKeyCode() == KeyEvent.VK_A && player.getXPos()-player.getSpeed()>= world.getWaterBorder()){
                         player.moveLeft();
                         repaint();
-                    }else if(e.getKeyCode() == KeyEvent.VK_D && player.getXPos()+player.getWidth()+player.getSpeed() <= world.getWorldWidth()){
+                    }else if(e.getKeyCode() == KeyEvent.VK_D && player.getXPos()+player.getWidth()+player.getSpeed() <= world.getWorldWidth() - world.getWaterBorder()){
                         player.moveRight();
                         repaint();
                     }
