@@ -10,15 +10,25 @@ public class Camera {
         this.viewportHeight = viewHeight;
     }
 
-    public void follow(int playerX, int playerY){
-        xPos = playerX-viewportWidth/2;
-        if(xPos < 0){
+    public void follow(int playerX, int playerY, int worldWidth, int worldHeight) {
+
+        xPos = playerX - viewportWidth / 2;
+        yPos = playerY - viewportHeight / 2;
+
+        // Left & Top
+        if (xPos < 0)
             xPos = 0;
-        }
-        yPos = playerY-viewportHeight/2;
-        if(yPos < 0){
+
+        if (yPos < 0)
             yPos = 0;
-        }
+
+        // Right
+        if (xPos > worldWidth - viewportWidth)
+            xPos = worldWidth - viewportWidth;
+
+        // Bottom
+        if (yPos > worldHeight - viewportHeight)
+            yPos = worldHeight - viewportHeight;
     }
 
     public void setViewportSize(int width, int height){
